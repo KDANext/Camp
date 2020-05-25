@@ -36,6 +36,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBoxAddChild = new System.Windows.Forms.ComboBox();
+            this.textBoxCounsellor = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBoxName
@@ -57,7 +59,7 @@
             // listBoxChildren
             // 
             this.listBoxChildren.FormattingEnabled = true;
-            this.listBoxChildren.Location = new System.Drawing.Point(12, 113);
+            this.listBoxChildren.Location = new System.Drawing.Point(382, 53);
             this.listBoxChildren.Name = "listBoxChildren";
             this.listBoxChildren.Size = new System.Drawing.Size(201, 212);
             this.listBoxChildren.TabIndex = 3;
@@ -72,7 +74,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 86);
+            this.label2.Location = new System.Drawing.Point(291, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 13);
             this.label2.TabIndex = 5;
@@ -104,11 +106,29 @@
             this.comboBoxAddChild.Size = new System.Drawing.Size(170, 21);
             this.comboBoxAddChild.TabIndex = 8;
             // 
+            // textBoxCounsellor
+            // 
+            this.textBoxCounsellor.Location = new System.Drawing.Point(68, 87);
+            this.textBoxCounsellor.Name = "textBoxCounsellor";
+            this.textBoxCounsellor.Size = new System.Drawing.Size(157, 22);
+            this.textBoxCounsellor.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(4, 90);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Вожатый";
+            // 
             // FormGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(620, 363);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.textBoxCounsellor);
             this.Controls.Add(this.comboBoxAddChild);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -134,5 +154,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxAddChild;
+        private System.Windows.Forms.TextBox textBoxCounsellor;
+        private System.Windows.Forms.Label label5;
     }
 }

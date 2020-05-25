@@ -28,22 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridViewCounsellor = new System.Windows.Forms.DataGridView();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonAddCounsellor = new System.Windows.Forms.Button();
+            this.buttonAddGroup = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCounsellor)).BeginInit();
+            this.buttonMatch = new System.Windows.Forms.Button();
+            this.buttonEditGroup = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.справочникToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.вожатыеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.детиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridViewCounsellor
+            // dataGridView
             // 
-            this.dataGridViewCounsellor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCounsellor.Location = new System.Drawing.Point(15, 34);
-            this.dataGridViewCounsellor.Name = "dataGridViewCounsellor";
-            this.dataGridViewCounsellor.RowTemplate.Height = 24;
-            this.dataGridViewCounsellor.Size = new System.Drawing.Size(268, 426);
-            this.dataGridViewCounsellor.TabIndex = 0;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(15, 34);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowTemplate.Height = 24;
+            this.dataGridView.Size = new System.Drawing.Size(687, 426);
+            this.dataGridView.TabIndex = 0;
             // 
             // label1
             // 
@@ -54,24 +61,80 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Группы";
             // 
-            // buttonAddCounsellor
+            // buttonAddGroup
             // 
-            this.buttonAddCounsellor.Location = new System.Drawing.Point(726, 46);
-            this.buttonAddCounsellor.Name = "buttonAddCounsellor";
-            this.buttonAddCounsellor.Size = new System.Drawing.Size(149, 41);
-            this.buttonAddCounsellor.TabIndex = 2;
-            this.buttonAddCounsellor.Text = "Добавить вожатого";
-            this.buttonAddCounsellor.UseVisualStyleBackColor = true;
+            this.buttonAddGroup.Location = new System.Drawing.Point(726, 46);
+            this.buttonAddGroup.Name = "buttonAddGroup";
+            this.buttonAddGroup.Size = new System.Drawing.Size(149, 41);
+            this.buttonAddGroup.TabIndex = 2;
+            this.buttonAddGroup.Text = "Добавить группу";
+            this.buttonAddGroup.UseVisualStyleBackColor = true;
+            this.buttonAddGroup.Click += new System.EventHandler(this.buttonAddGroup_Click);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.dataGridViewCounsellor);
-            this.panel1.Controls.Add(this.buttonAddCounsellor);
+            this.panel1.Controls.Add(this.buttonMatch);
+            this.panel1.Controls.Add(this.buttonEditGroup);
+            this.panel1.Controls.Add(this.dataGridView);
+            this.panel1.Controls.Add(this.buttonAddGroup);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(12, 43);
+            this.panel1.Location = new System.Drawing.Point(12, 27);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(928, 479);
             this.panel1.TabIndex = 3;
+            // 
+            // buttonMatch
+            // 
+            this.buttonMatch.Location = new System.Drawing.Point(726, 172);
+            this.buttonMatch.Name = "buttonMatch";
+            this.buttonMatch.Size = new System.Drawing.Size(149, 41);
+            this.buttonMatch.TabIndex = 4;
+            this.buttonMatch.Text = "Подобрать вожатых к группам";
+            this.buttonMatch.UseVisualStyleBackColor = true;
+            this.buttonMatch.Click += new System.EventHandler(this.buttonMatch_Click);
+            // 
+            // buttonEditGroup
+            // 
+            this.buttonEditGroup.Location = new System.Drawing.Point(726, 108);
+            this.buttonEditGroup.Name = "buttonEditGroup";
+            this.buttonEditGroup.Size = new System.Drawing.Size(149, 41);
+            this.buttonEditGroup.TabIndex = 3;
+            this.buttonEditGroup.Text = "Редактировать группу";
+            this.buttonEditGroup.UseVisualStyleBackColor = true;
+            this.buttonEditGroup.Click += new System.EventHandler(this.buttonEditGroup_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.справочникToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(952, 24);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // справочникToolStripMenuItem
+            // 
+            this.справочникToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.вожатыеToolStripMenuItem,
+            this.детиToolStripMenuItem});
+            this.справочникToolStripMenuItem.Name = "справочникToolStripMenuItem";
+            this.справочникToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
+            this.справочникToolStripMenuItem.Text = "Справочник";
+            // 
+            // вожатыеToolStripMenuItem
+            // 
+            this.вожатыеToolStripMenuItem.Name = "вожатыеToolStripMenuItem";
+            this.вожатыеToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.вожатыеToolStripMenuItem.Text = "Вожатые";
+            this.вожатыеToolStripMenuItem.Click += new System.EventHandler(this.вожатыеToolStripMenuItem_Click);
+            // 
+            // детиToolStripMenuItem
+            // 
+            this.детиToolStripMenuItem.Name = "детиToolStripMenuItem";
+            this.детиToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.детиToolStripMenuItem.Text = "Дети";
+            this.детиToolStripMenuItem.Click += new System.EventHandler(this.детиToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -79,21 +142,33 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(952, 534);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "MainForm";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCounsellor)).EndInit();
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridViewCounsellor;
+        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button buttonAddCounsellor;
+        private System.Windows.Forms.Button buttonAddGroup;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem справочникToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem вожатыеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem детиToolStripMenuItem;
+        private System.Windows.Forms.Button buttonMatch;
+        private System.Windows.Forms.Button buttonEditGroup;
     }
 }
 
