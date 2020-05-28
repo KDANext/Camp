@@ -7,10 +7,10 @@ namespace DatabaseImplement.Models
 {
     public class Group
     {
-        public int id { get; set; }
-        public int Counsellorid { get; set; }
-
-        [Required]
+        public int Id { get; set; }
+        public int? CounsellorId { get; set; }  
+        
+        [Required]     
         public string Name { get; set; }
         public Profile Profile { get; set; }
 

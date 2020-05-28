@@ -6,16 +6,16 @@ namespace DatabaseImplement.Models
 {
     public class Counsellor
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string FIO { get; set; }
-        public int GroupId { get; set; }
+        public int? GroupId { get; set; }
 
         [ForeignKey("CounsellorId")]
         public virtual List<CounsellorInterests> interests { get; set; }
 
         [ForeignKey("CounsellorId")]
-        public virtual List<Experience> experience { get; set; }
+        public virtual List<CounsellorExperience> experience { get; set; }
         
     }
 }

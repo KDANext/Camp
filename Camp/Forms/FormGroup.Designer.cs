@@ -30,7 +30,6 @@
         {
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.listBoxChildren = new System.Windows.Forms.ListBox();
             this.textBoxProfile = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,6 +37,8 @@
             this.comboBoxAddChild = new System.Windows.Forms.ComboBox();
             this.textBoxCounsellor = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.dataGridViewChildren = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChildren)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxName
@@ -55,14 +56,6 @@
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Название";
-            // 
-            // listBoxChildren
-            // 
-            this.listBoxChildren.FormattingEnabled = true;
-            this.listBoxChildren.Location = new System.Drawing.Point(382, 53);
-            this.listBoxChildren.Name = "listBoxChildren";
-            this.listBoxChildren.Size = new System.Drawing.Size(201, 212);
-            this.listBoxChildren.TabIndex = 3;
             // 
             // textBoxProfile
             // 
@@ -122,11 +115,21 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Вожатый";
             // 
+            // dataGridViewChildren
+            // 
+            this.dataGridViewChildren.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewChildren.Location = new System.Drawing.Point(369, 69);
+            this.dataGridViewChildren.Name = "dataGridViewChildren";
+            this.dataGridViewChildren.RowTemplate.Height = 24;
+            this.dataGridViewChildren.Size = new System.Drawing.Size(239, 254);
+            this.dataGridViewChildren.TabIndex = 11;
+            // 
             // FormGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(620, 363);
+            this.Controls.Add(this.dataGridViewChildren);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxCounsellor);
             this.Controls.Add(this.comboBoxAddChild);
@@ -134,11 +137,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxProfile);
-            this.Controls.Add(this.listBoxChildren);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxName);
             this.Name = "FormGroup";
             this.Text = "Группа";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChildren)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,7 +151,6 @@
 
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBoxChildren;
         private System.Windows.Forms.TextBox textBoxProfile;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -156,5 +158,6 @@
         private System.Windows.Forms.ComboBox comboBoxAddChild;
         private System.Windows.Forms.TextBox textBoxCounsellor;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView dataGridViewChildren;
     }
 }

@@ -6,7 +6,7 @@ namespace DatabaseImplement.Models
 {
     public class Child
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public int? GroupId { get; set; }
 
         [Required]
@@ -15,6 +15,7 @@ namespace DatabaseImplement.Models
 
         [ForeignKey("ChildId")]
         public virtual List<ChildInterests> interests { get; set; }
+        
         public virtual Group group { get; set; }
     }
 }

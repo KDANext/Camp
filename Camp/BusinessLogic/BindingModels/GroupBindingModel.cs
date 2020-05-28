@@ -5,10 +5,10 @@ namespace BusinessLogic.Models
 {
     public class GroupBindingModel
     {
-        public int? id { get; set; }
-        public int? Counsellorid { get; set; }
+        public int? Id { get; set; }
+        public int? CounsellorId { get; set; }
         public string Name { get; set; }         
         public Profile Profile { get; set; }
-        public List<ChildBindingModel> children { get; set; }
+        public Dictionary<int, string> Children { get; set; }
     }
 }

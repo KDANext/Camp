@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindingModels\InterestBindingModel.cs" />
     <Compile Include="Enums\Interests.cs" />
     <Compile Include="BindingModels\ChildBindingModel.cs" />
     <Compile Include="BindingModels\CounsellorBindingModel.cs" />
@@ -56,7 +57,11 @@
     <Compile Include="Enums\Profile.cs" />
     <Compile Include="BindingModels\ExperienceBindingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ChildViewModel.cs" />
+    <Compile Include="ViewModels\CounsellorViewModel.cs" />
+    <Compile Include="ViewModels\ExperienceViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
+    <Compile Include="ViewModels\InterestViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

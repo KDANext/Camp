@@ -1,6 +1,6 @@
-﻿namespace BusinessLogic.Models
+﻿namespace BusinessLogic.ViewModels
 {
-    public class ExperienceBindingModel
+    public class ExperienceViewModel
     {
         public int? Id { get; set; }
         public int AgeFrom { get; set; }

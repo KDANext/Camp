@@ -6,8 +6,8 @@ namespace DatabaseImplement.Models
 {
     public class Interest
     {
-        public int id { get; set; }
-        public Interests interest { get; set; }
+        public int Id { get; set; }
+        public string interest { get; set; }
 
         [ForeignKey("InterestId")]
         public virtual List<ChildInterests> childInterests { get; set; }

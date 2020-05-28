@@ -18,6 +18,7 @@ namespace DatabaseImplement
         public virtual DbSet<ChildInterests> ChildInterests { set; get; }
         public virtual DbSet<Counsellor> Counsellors { set; get; }
         public virtual DbSet<CounsellorInterests> CounsellorInterests { set; get; }
+        public virtual DbSet<CounsellorExperience> CounsellorExperience { set; get; }
         public virtual DbSet<Experience> Experience { set; get; }
         public virtual DbSet<Group> Groups { set; get; }
         public virtual DbSet<Interest> Interests { set; get; }
