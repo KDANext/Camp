@@ -1,12 +1,29 @@
 ﻿using DatabaseImplement.Models;
 using System;
-using System.Linq;
-using System.Runtime.Remoting.Contexts;
+using System.Windows.Forms;
 
 namespace DatabaseImplement.Logic
 {
     public class MatchingLogic
     {
+
+        public void Match()
+        {
+            using (var context = new CampDatabase())
+            {
+                foreach (var group in context.Groups)
+                {
+                    if (FindCounsellor(group.Id) == -1)
+                    {
+                        throw new Exception("Недостаточно вожатых для всех групп");
+                    }
+                    group.CounsellorId = FindCounsellor(group.Id);
+                    MessageBox.Show("Все вожатые распределены по группам");
+                }
+                context.SaveChanges();
+            }
+        }
+
         //средний возраст детей в группе
         public int FindAvarageChildrenAge(int groupId)
         {

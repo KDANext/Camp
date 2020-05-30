@@ -33,12 +33,15 @@
             this.textBoxProfile = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBoxAddChild = new System.Windows.Forms.ComboBox();
             this.textBoxCounsellor = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dataGridViewChildren = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChildren)).BeginInit();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonDel = new System.Windows.Forms.Button();
+            this.buttonEdit = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxName
@@ -67,7 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(291, 53);
+            this.label2.Location = new System.Drawing.Point(260, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 13);
             this.label2.TabIndex = 5;
@@ -81,23 +84,6 @@
             this.label3.Size = new System.Drawing.Size(56, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Профиль";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(291, 15);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Добавить ребёнка";
-            // 
-            // comboBoxAddChild
-            // 
-            this.comboBoxAddChild.FormattingEnabled = true;
-            this.comboBoxAddChild.Location = new System.Drawing.Point(404, 13);
-            this.comboBoxAddChild.Name = "comboBoxAddChild";
-            this.comboBoxAddChild.Size = new System.Drawing.Size(170, 21);
-            this.comboBoxAddChild.TabIndex = 8;
             // 
             // textBoxCounsellor
             // 
@@ -115,25 +101,78 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Вожатый";
             // 
-            // dataGridViewChildren
+            // dataGridView
             // 
-            this.dataGridViewChildren.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewChildren.Location = new System.Drawing.Point(369, 69);
-            this.dataGridViewChildren.Name = "dataGridViewChildren";
-            this.dataGridViewChildren.RowTemplate.Height = 24;
-            this.dataGridViewChildren.Size = new System.Drawing.Size(239, 254);
-            this.dataGridViewChildren.TabIndex = 11;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(345, 15);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowTemplate.Height = 24;
+            this.dataGridView.Size = new System.Drawing.Size(239, 254);
+            this.dataGridView.TabIndex = 11;
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(345, 300);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(107, 30);
+            this.buttonSave.TabIndex = 12;
+            this.buttonSave.Text = "Сохранить";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(477, 300);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(107, 30);
+            this.buttonCancel.TabIndex = 13;
+            this.buttonCancel.Text = "Отмена";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
+            // 
+            // buttonDel
+            // 
+            this.buttonDel.Location = new System.Drawing.Point(607, 156);
+            this.buttonDel.Name = "buttonDel";
+            this.buttonDel.Size = new System.Drawing.Size(127, 41);
+            this.buttonDel.TabIndex = 24;
+            this.buttonDel.Text = "Удалить";
+            this.buttonDel.UseVisualStyleBackColor = true;
+            this.buttonDel.Click += new System.EventHandler(this.ButtonDel_Click);
+            // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Location = new System.Drawing.Point(607, 86);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(127, 41);
+            this.buttonEdit.TabIndex = 23;
+            this.buttonEdit.Text = "Редактировать";
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.ButtonUpd_Click);
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Location = new System.Drawing.Point(607, 25);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(127, 41);
+            this.buttonAdd.TabIndex = 22;
+            this.buttonAdd.Text = "Добавить ";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // FormGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(620, 363);
-            this.Controls.Add(this.dataGridViewChildren);
+            this.ClientSize = new System.Drawing.Size(746, 363);
+            this.Controls.Add(this.buttonDel);
+            this.Controls.Add(this.buttonEdit);
+            this.Controls.Add(this.buttonAdd);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxCounsellor);
-            this.Controls.Add(this.comboBoxAddChild);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxProfile);
@@ -141,7 +180,8 @@
             this.Controls.Add(this.textBoxName);
             this.Name = "FormGroup";
             this.Text = "Группа";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChildren)).EndInit();
+            this.Load += new System.EventHandler(this.FormGroup_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,10 +194,13 @@
         private System.Windows.Forms.TextBox textBoxProfile;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBoxAddChild;
         private System.Windows.Forms.TextBox textBoxCounsellor;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dataGridViewChildren;
+        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonDel;
+        private System.Windows.Forms.Button buttonEdit;
+        private System.Windows.Forms.Button buttonAdd;
     }
 }

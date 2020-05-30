@@ -10,6 +10,25 @@ namespace DatabaseImplement.Logic
 {
     public class ChildLogic
     {
+       /* public void DeleteChildFromGroup(int childId)
+        {
+            //проходим по таблице детей, ищем ребёнка с таким id и обнуляем у него Id группы
+            using (var context = new CampDatabase())
+            {
+                using (var transaction = context.Database.BeginTransaction())
+                {                    
+                    foreach (var child in context.Children)
+                    {
+                        if (child.Id == childId)
+                        {
+                            child.GroupId = 0;
+                        }
+                    }
+                    transaction.Commit();
+                }
+            }
+        }*/
+
         public void CreateOrUpdate(ChildBindingModel model)
         {
             using (var context = new CampDatabase())
@@ -18,8 +37,7 @@ namespace DatabaseImplement.Logic
                 {
                     try
                     {
-                        Child child = context.Children.FirstOrDefault(rec =>
-                       rec.FIO == model.FIO && rec.Id != model.Id);
+                        Child child = context.Children.FirstOrDefault(rec => rec.FIO == model.FIO && rec.Id != model.Id);
                         if (child != null)
                         {
                             throw new Exception("Уже есть ребёнок с таким именем");
@@ -84,7 +102,7 @@ namespace DatabaseImplement.Logic
                 {
                     try
                     {
-                        // удаяем записи по компонентам при удалении компьютера
+                        // удаяем записи по интересам при удалении ребёнка
                         context.ChildInterests.RemoveRange(context.ChildInterests.Where(rec =>
                         rec.ChildId == model.Id));
                         Child child = context.Children.FirstOrDefault(rec => rec.Id

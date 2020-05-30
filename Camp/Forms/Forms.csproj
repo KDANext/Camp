@@ -195,6 +195,12 @@
     <Compile Include="FormGroup.Designer.cs">
       <DependentUpon>FormGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormGroupChild.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGroupChild.Designer.cs">
+      <DependentUpon>FormGroupChild.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGroup.resx">
       <DependentUpon>FormGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGroupChild.resx">
+      <DependentUpon>FormGroupChild.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

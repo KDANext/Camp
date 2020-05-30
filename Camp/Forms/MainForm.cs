@@ -16,11 +16,13 @@ namespace Forms
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        private readonly MainLogic logic;
-        public MainForm(MainLogic logic)
+        private readonly GroupLogic logic;
+        private readonly MatchingLogic logicM;
+        public MainForm(MatchingLogic logicM, GroupLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
+            this.logicM = logicM;
         }
 
         private void buttonAddGroup_Click(object sender, EventArgs e)
@@ -48,7 +50,7 @@ namespace Forms
 
         private void buttonMatch_Click(object sender, EventArgs e)
         {
-            logic.Match();
+            logicM.Match();
         }
 
         private void вожатыеToolStripMenuItem_Click(object sender, EventArgs e)
@@ -76,13 +78,13 @@ namespace Forms
         }
         private void LoadData()
         {
-           /* var list = logic.GetGroupsList();
+            var list = logic.Read(null);
             if (list != null)
             {
                 dataGridView.DataSource = list;
                 dataGridView.Columns[0].Visible = false;                
                 dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }*/
+            }
         }
     }
 }

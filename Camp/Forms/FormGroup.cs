@@ -1,13 +1,9 @@
-﻿using BusinessLogic.ViewModels;
+﻿using BusinessLogic.Enums;
+using BusinessLogic.Models;
+using BusinessLogic.ViewModels;
 using DatabaseImplement.Logic;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
 
@@ -18,108 +14,155 @@ namespace Forms
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly GroupLogic groupLogic;
-        private readonly MainLogic logicM;
-
-        public FormGroup(GroupLogic groupLogic, MainLogic logicM)
+        private readonly GroupLogic logic;
+        public int Id { set { id = value; } }        
+        private int? id;
+        private Dictionary<int, string> groupChildren;
+       
+        public FormGroup(GroupLogic logic)
         {
             InitializeComponent();
-            this.groupLogic = groupLogic;
-            this.logicM = logicM;
+            this.logic = logic;
         }
-        //чтобы просто запустилось
-        public int Id = 5;
-
-        /*private void FormCreateOrder_Load(object sender, EventArgs e)
+        private void FormGroup_Load(object sender, EventArgs e)
         {
-            try
-            {
-                List<GroupViewModel> list = groupLogic.Read(null);
-                if (list != null)
-                {
-                    comboBoxComputer.DisplayMember = "ComputerName";
-                    comboBoxComputer.ValueMember = "Id";
-                    comboBoxComputer.DataSource = list;
-                    comboBoxComputer.SelectedItem = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-            }
-        }
-
-        private void CalcSum()
-        {
-            if (comboBoxComputer.SelectedValue != null && !string.IsNullOrEmpty(textBoxCount.Text))
+            if (id.HasValue)
             {
                 try
                 {
-                    int id = Convert.ToInt32(comboBoxComputer.SelectedValue);
-                    ComputerViewModel computer = groupLogic.Read(new ComputerBindingModel { Id = id })?[0];
-                    int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * computer?.Price ?? 0).ToString();
+                    GroupViewModel view = logic.Read(new GroupBindingModel
+                    {
+                        Id = id.Value
+                    })?[0];
+                    if (view != null)
+                    {
+                        textBoxName.Text = view.Name;
+                        textBoxProfile.Text = view.Profile.ToString();                          
+                        LoadData();
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                   MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                groupChildren = new Dictionary<int, string>();
+            }
+        }
+        private void LoadData()
+        {
+            try
+            {
+                if (groupChildren != null)
+                {
+                    dataGridView.Rows.Clear();
+                    foreach (var child in groupChildren)
+                    {
+                        dataGridView.Rows.Add(new object[] { child.Key, child.Value});
+                    }
+                }
+            }
+            catch (Exception ex)
+            {                
+            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+MessageBoxIcon.Error);
+            }
+        }
+        private void ButtonAdd_Click(object sender, EventArgs e)
+        {
+            // сделать добавление через comboBox
+            //при добавлении ребёнка убираем его из combobox и показываем в списке
+            var form = Container.Resolve<FormGroupChild>();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                if (groupChildren.ContainsKey(form.Id))
+                {
+                    groupChildren[form.Id] = form.ChildName;
+                }
+                else
+                {
+                    groupChildren.Add(form.Id, form.ChildName);
+                }
+                LoadData();
+            }
+        }
+        private void ButtonUpd_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count == 1)
+            {
+                var form = Container.Resolve<FormGroupChild>();
+                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                form.Id = id;                
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    groupChildren[form.Id] = form.ChildName;
+                    LoadData();
                 }
             }
         }
-
-        private void textBoxCount_TextChanged(object sender, EventArgs e)
+        private void ButtonDel_Click(object sender, EventArgs e)
         {
-            CalcSum();
-        }
-
-        private void comboBoxComputer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CalcSum();
-        }
-
-        private void buttonSave_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(textBoxCount.Text))
+            if (dataGridView.SelectedRows.Count == 1)
             {
-                MessageBox.Show("Заполните поле Количество", "Ошибка",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo,
+               MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+
+                        groupChildren.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                       MessageBoxIcon.Error);
+                    }
+                    LoadData();
+                }
+            }
+        }       
+
+        private void ButtonSave_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxName.Text))
+            {
+                MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
                 return;
             }
-
-            if (comboBoxComputer.SelectedValue == null)
+            if (string.IsNullOrEmpty(textBoxProfile.Text))
             {
-                MessageBox.Show("Выберите компьютер", "Ошибка", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
+                MessageBox.Show("Заполните цену", "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
                 return;
-            }
-
+            }            
             try
             {
-                logicM.CreateOrder(new CreateOrderBindingModel
+                logic.CreateOrUpdate(new GroupBindingModel
                 {
-                    ComputerId = Convert.ToInt32(comboBoxComputer.SelectedValue),
-                    Count = Convert.ToInt32(textBoxCount.Text),
-                    Sum = Convert.ToDecimal(textBoxSum.Text)
+                    Id = id,
+                    Name = textBoxName.Text,
+                    Profile = (Profile)Enum.Parse(typeof(Profile), "Active", true),               
+                    Children = groupChildren
                 });
-
-                MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Сохранение прошло успешно", "Сообщение",
+               MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
-
                 Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
+               MessageBoxIcon.Error);
             }
         }
-
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
-        }*/
+        }
     }
 }

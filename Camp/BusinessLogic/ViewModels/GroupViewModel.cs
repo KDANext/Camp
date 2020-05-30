@@ -15,12 +15,6 @@ namespace BusinessLogic.ViewModels
         public string CounsellorName { get; set; }        
 
         [DisplayName("Профиль")]
-        public Profile Profile { get; set; }
-
-        [DisplayName("Количество детей")]
-        public Profile ChildrenCount { get; set; }
-
-
-
+        public Profile Profile { get; set; } 
     }
 }
