@@ -11,6 +11,7 @@ namespace Forms
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
+        public readonly ChildLogic childLogic;
         public int Id
         {
             get { return Convert.ToInt32(comboBoxAddChild.SelectedValue); }
@@ -18,13 +19,14 @@ namespace Forms
         }
         public string ChildName { get { return comboBoxAddChild.Text; } }
         
-        public FormGroupChild(GroupLogic logic)
+        public FormGroupChild(ChildLogic childLogic)
         {
+            this.childLogic = childLogic;
             InitializeComponent();
-            List<GroupViewModel> list = logic.Read(null);
+            var list = childLogic.Read(null);
             if (list != null)
             {
-                comboBoxAddChild.DisplayMember = "ChildName";
+                comboBoxAddChild.DisplayMember = "FIO";
                 comboBoxAddChild.ValueMember = "Id";
                 comboBoxAddChild.DataSource = list;
                 comboBoxAddChild.SelectedItem = null;

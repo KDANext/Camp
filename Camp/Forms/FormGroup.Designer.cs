@@ -41,6 +41,9 @@
             this.buttonDel = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
+            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +51,7 @@
             // 
             this.textBoxName.Location = new System.Drawing.Point(68, 12);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(157, 22);
+            this.textBoxName.Size = new System.Drawing.Size(157, 20);
             this.textBoxName.TabIndex = 1;
             // 
             // label1
@@ -56,7 +59,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(4, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Название";
             // 
@@ -64,7 +67,7 @@
             // 
             this.textBoxProfile.Location = new System.Drawing.Point(68, 50);
             this.textBoxProfile.Name = "textBoxProfile";
-            this.textBoxProfile.Size = new System.Drawing.Size(157, 22);
+            this.textBoxProfile.Size = new System.Drawing.Size(157, 20);
             this.textBoxProfile.TabIndex = 4;
             // 
             // label2
@@ -72,7 +75,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(260, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.Size = new System.Drawing.Size(76, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Список детей";
             // 
@@ -81,7 +84,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(4, 53);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Профиль";
             // 
@@ -89,7 +92,7 @@
             // 
             this.textBoxCounsellor.Location = new System.Drawing.Point(68, 87);
             this.textBoxCounsellor.Name = "textBoxCounsellor";
-            this.textBoxCounsellor.Size = new System.Drawing.Size(157, 22);
+            this.textBoxCounsellor.Size = new System.Drawing.Size(157, 20);
             this.textBoxCounsellor.TabIndex = 9;
             // 
             // label5
@@ -97,13 +100,16 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(4, 90);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 13);
+            this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 10;
             this.label5.Text = "Вожатый";
             // 
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnId,
+            this.ColumnName});
             this.dataGridView.Location = new System.Drawing.Point(345, 15);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowTemplate.Height = 24;
@@ -160,11 +166,30 @@
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
+            // ColumnId
+            // 
+            this.ColumnId.HeaderText = "Индефикатор";
+            this.ColumnId.Name = "ColumnId";
+            // 
+            // ColumnName
+            // 
+            this.ColumnName.HeaderText = "ФИО";
+            this.ColumnName.Name = "ColumnName";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(68, 113);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 25;
+            // 
             // FormGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(746, 363);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.buttonDel);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonAdd);
@@ -202,5 +227,8 @@
         private System.Windows.Forms.Button buttonDel;
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

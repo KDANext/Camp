@@ -135,7 +135,7 @@ MessageBoxIcon.Error);
             }
             if (string.IsNullOrEmpty(textBoxProfile.Text))
             {
-                MessageBox.Show("Заполните цену", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Заполните профиль", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }            
@@ -145,7 +145,7 @@ MessageBoxIcon.Error);
                 {
                     Id = id,
                     Name = textBoxName.Text,
-                    Profile = (Profile)Enum.Parse(typeof(Profile), "Active", true),               
+                    Profile = (Profile)Enum.Parse(typeof(Profile), textBoxName.Text),               
                     Children = groupChildren
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
