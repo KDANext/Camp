@@ -28,6 +28,7 @@ namespace DatabaseImplement.Logic
                     experience = new Experience();
                     context.Experience.Add(experience);
                 }
+                experience.CounsellorId = model.CounsellorId;
                 experience.AgeFrom = model.AgeFrom;
                 experience.AgeTo = model.AgeTo;
                 experience.Years = model.Years;
@@ -56,10 +57,10 @@ namespace DatabaseImplement.Logic
             using (var context = new CampDatabase())
             {
                 return context.Experience
-                .Where(rec => model == null || rec.Id == model.Id || (rec.AgeFrom == model.AgeFrom && rec.AgeTo == model.AgeTo && rec.Years == model.Years))
+                .Where(rec => model == null || rec.Id == model.Id || (rec.AgeFrom == model.AgeFrom && rec.AgeTo == model.AgeTo && rec.Years == model.Years && rec.CounsellorId == model.CounsellorId))
                 .Select(rec => new ExperienceViewModel
                 {
-                    Id = rec.Id,
+                    Id = rec.Id,                    
                     AgeFrom = rec.AgeFrom,
                     AgeTo = rec.AgeTo,
                     Years = rec.Years
