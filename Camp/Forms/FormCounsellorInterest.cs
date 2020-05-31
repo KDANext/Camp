@@ -47,5 +47,10 @@ namespace Forms
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void FormCounsellorInterest_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

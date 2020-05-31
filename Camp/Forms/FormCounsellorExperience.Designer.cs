@@ -36,6 +36,7 @@
             this.textBoxAgeFrom = new System.Windows.Forms.TextBox();
             this.textBoxAgeTo = new System.Windows.Forms.TextBox();
             this.textBoxYears = new System.Windows.Forms.TextBox();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -43,7 +44,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Опыт";
             // 
@@ -52,7 +53,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(53, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Возраст детей";
             // 
@@ -79,7 +80,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 112);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 13);
+            this.label5.Size = new System.Drawing.Size(86, 13);
             this.label5.TabIndex = 9;
             this.label5.Text = "Количество лет";
             // 
@@ -87,28 +88,42 @@
             // 
             this.textBoxAgeFrom.Location = new System.Drawing.Point(107, 41);
             this.textBoxAgeFrom.Name = "textBoxAgeFrom";
-            this.textBoxAgeFrom.Size = new System.Drawing.Size(157, 22);
+            this.textBoxAgeFrom.Size = new System.Drawing.Size(157, 20);
             this.textBoxAgeFrom.TabIndex = 10;
+            this.textBoxAgeFrom.Text = "0";
             // 
             // textBoxAgeTo
             // 
             this.textBoxAgeTo.Location = new System.Drawing.Point(107, 70);
             this.textBoxAgeTo.Name = "textBoxAgeTo";
-            this.textBoxAgeTo.Size = new System.Drawing.Size(157, 22);
+            this.textBoxAgeTo.Size = new System.Drawing.Size(157, 20);
             this.textBoxAgeTo.TabIndex = 11;
+            this.textBoxAgeTo.Text = "0";
             // 
             // textBoxYears
             // 
             this.textBoxYears.Location = new System.Drawing.Point(107, 103);
             this.textBoxYears.Name = "textBoxYears";
-            this.textBoxYears.Size = new System.Drawing.Size(157, 22);
+            this.textBoxYears.Size = new System.Drawing.Size(157, 20);
             this.textBoxYears.TabIndex = 12;
+            this.textBoxYears.Text = "0";
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(163, 130);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.TabIndex = 13;
+            this.buttonSave.Text = "Сохранить";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // FormCounsellorExperience
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(308, 154);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxYears);
             this.Controls.Add(this.textBoxAgeTo);
             this.Controls.Add(this.textBoxAgeFrom);
@@ -133,5 +148,6 @@
         private System.Windows.Forms.TextBox textBoxAgeFrom;
         private System.Windows.Forms.TextBox textBoxAgeTo;
         private System.Windows.Forms.TextBox textBoxYears;
+        private System.Windows.Forms.Button buttonSave;
     }
 }

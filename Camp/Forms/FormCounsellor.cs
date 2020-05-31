@@ -15,13 +15,15 @@ namespace Forms
         public int Id { set { id = value; } }
 
         private readonly CounsellorLogic logic;
+        private readonly ExperienceLogic experienceLogic;
         private int? id;
         private Dictionary<int, string> counsellorInterests;
         public Dictionary<int, (int, int, int)> counsellorExperience { get; set; }       
-        public FormCounsellor(CounsellorLogic logic)
+        public FormCounsellor(CounsellorLogic logic, ExperienceLogic experienceLogic)
         {
             InitializeComponent();
             this.logic = logic;
+            this.experienceLogic = experienceLogic;
         }
 
         private void FormComputer_Load(object sender, EventArgs e)
@@ -59,6 +61,12 @@ namespace Forms
             dataGridViewInterests.Columns.Add("Interest", "Интерес");
             dataGridViewInterests.Columns[0].Visible = false;            
             dataGridViewInterests.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewExperience.Columns.Clear();
+            dataGridViewExperience.Columns.Add("Id", "Id");
+            dataGridViewExperience.Columns.Add("AgeFrom", "Возраст от");
+            dataGridViewExperience.Columns.Add("AgeTo", "До");
+            dataGridViewExperience.Columns.Add("Years", "Кол-во лет");
+            dataGridViewExperience.Columns[0].Visible = false;
             try
             {
                 if (counsellorInterests != null)
@@ -71,10 +79,10 @@ namespace Forms
                 }
                 if (counsellorExperience != null)
                 {
-                    dataGridViewInterests.Rows.Clear();
-                    foreach (var ad in counsellorInterests)
+                    dataGridViewExperience.Rows.Clear();
+                    foreach (var ce in counsellorExperience)
                     {
-                        dataGridViewInterests.Rows.Add(new object[] { ad.Key, ad.Value });
+                        dataGridViewExperience.Rows.Add(new object[] { ce.Key, ce.Value.Item1, ce.Value.Item2, ce.Value.Item3 });
                     }
                 }
             }

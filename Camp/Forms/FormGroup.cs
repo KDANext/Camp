@@ -15,18 +15,28 @@ namespace Forms
         public new IUnityContainer Container { get; set; }
 
         private readonly GroupLogic logic;
+        private readonly CounsellorLogic counsellorLogic;
         public int Id { set { id = value; } }        
         private int? id;
         private Dictionary<int, string> groupChildren;
        
-        public FormGroup(GroupLogic logic)
+        public FormGroup(GroupLogic logic,CounsellorLogic counsellorLogic)
         {
             InitializeComponent();
             this.logic = logic;
+            this.counsellorLogic = counsellorLogic;
             comboBoxProfile.DataSource = Enum.GetValues(typeof(Profile));
         }
         private void FormGroup_Load(object sender, EventArgs e)
         {
+            var counsellorsView = counsellorLogic.Read(null);
+            if (counsellorsView != null)
+            {
+                comboBoxCounsellor.DisplayMember = "FIO";
+                comboBoxCounsellor.ValueMember = "Id";
+                comboBoxCounsellor.DataSource = counsellorsView;
+                comboBoxCounsellor.SelectedItem = null;
+            }
             if (id.HasValue)
             {
                 try
@@ -131,7 +141,7 @@ MessageBoxIcon.Error);
                 {
                     Id = id,
                     Name = textBoxName.Text,
-                    Profile = (Profile)Enum.Parse(typeof(Profile), textBoxName.Text),
+                    Profile = (Profile)Enum.Parse(typeof(Profile), comboBoxProfile.SelectedItem.ToString()),
                     CounsellorId = comboBoxProfile.SelectedIndex,
                     Children = groupChildren
                 }) ;

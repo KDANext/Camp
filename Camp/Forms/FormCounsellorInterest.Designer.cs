@@ -30,6 +30,7 @@
         {
             this.comboBoxInterest = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBoxInterest
@@ -45,19 +46,31 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(24, 25);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Интерес";
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(117, 57);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.TabIndex = 5;
+            this.buttonSave.Text = "Сохранить";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // FormCounsellorInterest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(310, 92);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBoxInterest);
             this.Name = "FormCounsellorInterest";
             this.Text = "FormCounsellorInterest";
+            this.Load += new System.EventHandler(this.FormCounsellorInterest_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -67,5 +80,6 @@
 
         private System.Windows.Forms.ComboBox comboBoxInterest;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonSave;
     }
 }

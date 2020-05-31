@@ -83,7 +83,7 @@ namespace DatabaseImplement.Logic
                             context.CounsellorExperience.Add(new CounsellorExperience
                             {
                                 CounsellorId = counsellor.Id,
-                                ExperienceId = experience.Key,
+                                ExperienceId = experience.Key                               
                             });
                             context.SaveChanges();
                         }

@@ -56,7 +56,7 @@ namespace DatabaseImplement.Logic
             using (var context = new CampDatabase())
             {
                 return context.Experience
-                .Where(rec => model == null || rec.Id == model.Id)
+                .Where(rec => model == null || rec.Id == model.Id || (rec.AgeFrom == model.AgeFrom && rec.AgeTo == model.AgeTo && rec.Years == model.Years))
                 .Select(rec => new ExperienceViewModel
                 {
                     Id = rec.Id,
