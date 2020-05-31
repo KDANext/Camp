@@ -10,16 +10,23 @@ namespace DatabaseImplement.Logic
         public void Match()
         {
             using (var context = new CampDatabase())
-            {
+            {     
                 foreach (var group in context.Groups)
                 {
                     if (FindCounsellor(group.Id) == -1)
                     {
                         throw new Exception("Недостаточно вожатых для всех групп");
-                    }
-                    group.CounsellorId = FindCounsellor(group.Id);
-                    MessageBox.Show("Все вожатые распределены по группам");
+                    }                    
+                    //ищем вожатого с данным id и устанавливаем ему id группы
+                    foreach(var counsellor in context.Counsellors)
+                    {
+                        if(counsellor.Id == FindCounsellor(group.Id))
+                        {
+                            counsellor.GroupId = group.Id;
+                        }
+                    }                    
                 }
+                MessageBox.Show("Все вожатые распределены по группам");
                 context.SaveChanges();
             }
         }
@@ -63,7 +70,7 @@ namespace DatabaseImplement.Logic
             {
                 foreach (Counsellor counsellor in context.Counsellors)
                 {
-                    if(counsellor.Id == Id && counsellor.GroupId != 0)
+                    if(counsellor.Id == Id && counsellor.GroupId == 0)
                     {
                         return true;
                     }                   

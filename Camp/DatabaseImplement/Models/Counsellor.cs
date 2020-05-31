@@ -15,7 +15,8 @@ namespace DatabaseImplement.Models
         public virtual List<CounsellorInterests> interests { get; set; }
 
         [ForeignKey("CounsellorId")]
-        public virtual List<CounsellorExperience> experience { get; set; }
-        
+        public virtual List<Experience> experience { get; set; }
+
+
     }
 }

@@ -26,7 +26,7 @@ namespace Forms
             this.experienceLogic = experienceLogic;
         }
 
-        private void FormComputer_Load(object sender, EventArgs e)
+        private void FormCounsellor_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
@@ -51,6 +51,11 @@ namespace Forms
             {
                 counsellorInterests = new Dictionary<int, string>();
                 counsellorExperience = new Dictionary<int, (int, int, int)>();
+                buttonAddExp.Enabled = false;
+                buttonAddInterest.Enabled = false;
+                buttonEditExp.Enabled = false;                
+                buttonDelExp.Enabled = false;
+                buttonDelInterest.Enabled = false;
             }
         }
 
@@ -112,8 +117,9 @@ namespace Forms
 
         private void buttonAddExp_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCounsellorExperience>();
-
+            var form = Container.Resolve<FormCounsellorExperience>();            
+             form.counsellorId = id.Value;           
+             
             if (form.ShowDialog() == DialogResult.OK)
             {
                 if (counsellorExperience.ContainsKey(form.Id))
@@ -128,33 +134,22 @@ namespace Forms
             }
         }
 
-        private void buttonUpdInterests_Click(object sender, EventArgs e)
+        private void buttonUpdExperience_Click(object sender, EventArgs e)
         {
             if (dataGridViewInterests.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormCounsellorInterest>();
+                var form = Container.Resolve<FormCounsellorExperience>();
                 int id = Convert.ToInt32(dataGridViewInterests.SelectedRows[0].Cells[0].Value);
                 form.Id = id;
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    counsellorInterests[form.Id] = form.InterestName;
-                    LoadData();
-                }
-            }
-        }
-
-        private void buttonUpdExp_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewExperience.SelectedRows.Count == 1)
-            {
-                var form = Container.Resolve<FormCounsellorExperience>();
-                int id = Convert.ToInt32(dataGridViewExperience.SelectedRows[0].Cells[0].Value);
-                form.Id = id;
-                if (form.ShowDialog() == DialogResult.OK)
+                if (counsellorExperience.ContainsKey(form.Id))
                 {
                     counsellorExperience[form.Id] = (form.AgeFrom, form.AgeTo, form.Years);
-                    LoadData();
                 }
+                else
+                {
+                    counsellorExperience.Add(form.Id, (form.AgeFrom, form.AgeTo, form.Years));
+                }
+                LoadData();
             }
         }
 
@@ -204,12 +199,7 @@ namespace Forms
             {
                 MessageBox.Show("Заполните ФИО", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }    
-            if (counsellorInterests == null || counsellorInterests.Count == 0)
-            {
-                MessageBox.Show("Заполните интересы", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            }                
             try
             {
                 logic.CreateOrUpdate(new CounsellorBindingModel

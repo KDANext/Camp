@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseImplement.Migrations
 {
     [DbContext(typeof(CampDatabase))]
-    [Migration("20200531053517_InitialCreate")]
+    [Migration("20200531134229_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,9 +31,6 @@ namespace DatabaseImplement.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ChildId")
-                        .HasColumnType("int");
-
                     b.Property<string>("FIO")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -43,7 +40,7 @@ namespace DatabaseImplement.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ChildId");
+                    b.HasIndex("GroupId");
 
                     b.ToTable("Children");
                 });
@@ -89,28 +86,6 @@ namespace DatabaseImplement.Migrations
                     b.ToTable("Counsellors");
                 });
 
-            modelBuilder.Entity("DatabaseImplement.Models.CounsellorExperience", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CounsellorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExperienceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("CounsellorId");
-
-                    b.HasIndex("ExperienceId");
-
-                    b.ToTable("CounsellorExperience");
-                });
-
             modelBuilder.Entity("DatabaseImplement.Models.CounsellorInterests", b =>
                 {
                     b.Property<int>("id")
@@ -154,6 +129,8 @@ namespace DatabaseImplement.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CounsellorId");
+
                     b.ToTable("Experience");
                 });
 
@@ -164,7 +141,7 @@ namespace DatabaseImplement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CounsellorId")
+                    b.Property<int?>("GroupId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -175,6 +152,8 @@ namespace DatabaseImplement.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
 
                     b.ToTable("Groups");
                 });
@@ -198,7 +177,7 @@ namespace DatabaseImplement.Migrations
                 {
                     b.HasOne("DatabaseImplement.Models.Group", "group")
                         .WithMany("children")
-                        .HasForeignKey("ChildId");
+                        .HasForeignKey("GroupId");
                 });
 
             modelBuilder.Entity("DatabaseImplement.Models.ChildInterests", b =>
@@ -216,21 +195,6 @@ namespace DatabaseImplement.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DatabaseImplement.Models.CounsellorExperience", b =>
-                {
-                    b.HasOne("DatabaseImplement.Models.Counsellor", "counsellors")
-                        .WithMany("experience")
-                        .HasForeignKey("CounsellorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DatabaseImplement.Models.Experience", "counsellorExperience")
-                        .WithMany("counsellorExperience")
-                        .HasForeignKey("ExperienceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("DatabaseImplement.Models.CounsellorInterests", b =>
                 {
                     b.HasOne("DatabaseImplement.Models.Counsellor", "counsellors")
@@ -244,6 +208,22 @@ namespace DatabaseImplement.Migrations
                         .HasForeignKey("InterestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DatabaseImplement.Models.Experience", b =>
+                {
+                    b.HasOne("DatabaseImplement.Models.Counsellor", "counsellor")
+                        .WithMany("experience")
+                        .HasForeignKey("CounsellorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DatabaseImplement.Models.Group", b =>
+                {
+                    b.HasOne("DatabaseImplement.Models.Counsellor", "counsellor")
+                        .WithMany()
+                        .HasForeignKey("GroupId");
                 });
 #pragma warning restore 612, 618
         }

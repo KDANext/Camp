@@ -307,15 +307,14 @@
     <Compile Include="Logic\GroupLogic.cs" />
     <Compile Include="Logic\InterestLogic.cs" />
     <Compile Include="Logic\MatchingLogic.cs" />
-    <Compile Include="Migrations\20200531053517_InitialCreate.cs" />
-    <Compile Include="Migrations\20200531053517_InitialCreate.designer.cs">
-      <DependentUpon>20200531053517_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\20200531134229_InitialCreate.cs" />
+    <Compile Include="Migrations\20200531134229_InitialCreate.designer.cs">
+      <DependentUpon>20200531134229_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CampDatabaseModelSnapshot.cs" />
     <Compile Include="Models\Child.cs" />
     <Compile Include="Models\ChildInterests.cs" />
     <Compile Include="Models\Counsellor.cs" />
-    <Compile Include="Models\CounsellorExperience.cs" />
     <Compile Include="Models\CounsellorInterests.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Interest.cs" />

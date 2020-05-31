@@ -43,16 +43,16 @@ namespace DatabaseImplement.Logic
                         context.SaveChanges();
                         if (model.Id.HasValue)
                         {
-                            var CounsellorExperience = context.CounsellorExperience.Where(rec
-                           => rec.ExperienceId == model.Id.Value).ToList();
+                            var CounsellorExperience = context.Experience.Where(rec
+                           => rec.CounsellorId == model.Id.Value).ToList();
                             // удалили те, которых нет в модели
-                            context.CounsellorExperience.RemoveRange(CounsellorExperience.Where(rec =>
-                            !model.CounsellorExperience.ContainsKey(rec.ExperienceId)).ToList());
+                            context.Experience.RemoveRange(CounsellorExperience.Where(rec =>
+                            !model.CounsellorExperience.ContainsKey(rec.CounsellorId)).ToList());
                             context.SaveChanges();
                             // обновили количество у существующих записей
                             foreach (var updateExperience in CounsellorExperience)
                             {
-                                model.CounsellorExperience.Remove(updateExperience.ExperienceId);
+                                model.CounsellorExperience.Remove(updateExperience.CounsellorId);
                             }
 
                             var CounsellorInterests = context.CounsellorInterests.Where(rec
@@ -77,16 +77,7 @@ namespace DatabaseImplement.Logic
                                 InterestId = interest.Key,
                             });
                             context.SaveChanges();
-                        }
-                        foreach (var experience in model.CounsellorExperience)
-                        {
-                            context.CounsellorExperience.Add(new CounsellorExperience
-                            {
-                                CounsellorId = counsellor.Id,
-                                ExperienceId = experience.Key                               
-                            });
-                            context.SaveChanges();
-                        }
+                        }                        
                         transaction.Commit();
                     }
                     catch (Exception)
@@ -108,7 +99,7 @@ namespace DatabaseImplement.Logic
                         // удаяем записи по опыту и интересвм при удалении вожатого
                         context.CounsellorInterests.RemoveRange(context.CounsellorInterests.Where(rec =>
                         rec.CounsellorId == model.Id));
-                        context.CounsellorExperience.RemoveRange(context.CounsellorExperience.Where(rec =>
+                        context.Experience.RemoveRange(context.Experience.Where(rec =>
                         rec.CounsellorId == model.Id));
                         Counsellor counsellor = context.Counsellors.FirstOrDefault(rec => rec.Id
                         == model.Id);
@@ -148,11 +139,11 @@ namespace DatabaseImplement.Logic
                .Where(recPC => recPC.CounsellorId == rec.Id)
                .ToDictionary(recPC => recPC.CounsellorId, recPC =>
                 recPC.counsellorInterests.interest),
-               CounsellorExperience = context.CounsellorExperience
-                .Include(recPC => recPC.counsellorExperience)
+
+               CounsellorExperience = context.Experience                
                .Where(recPC => recPC.CounsellorId == rec.Id)
                .ToDictionary(recPC => recPC.CounsellorId, recPC =>
-                (recPC.counsellorExperience.AgeFrom, recPC.counsellorExperience.AgeTo, recPC.counsellorExperience.Years))
+                (recPC.AgeFrom, recPC.AgeTo, recPC.Years))
                })
                .ToList();
             }

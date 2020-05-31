@@ -14,8 +14,7 @@ namespace DatabaseImplement.Models
         public int Age { get; set; }
 
         [ForeignKey("ChildId")]
-        public virtual List<ChildInterests> interests { get; set; } 
-        
+        public virtual List<ChildInterests> interests { get; set; }         
         public virtual Group group { get; set; }
     }
 }

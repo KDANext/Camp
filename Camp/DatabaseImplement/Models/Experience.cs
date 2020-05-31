@@ -10,8 +10,8 @@ namespace DatabaseImplement.Models
         public int AgeFrom { get; set; }
         public int AgeTo { get; set; }
         public int Years { get; set; }
+        public virtual Counsellor counsellor { get; set; }
 
-        [ForeignKey("ExperienceId")]
-        public virtual List<CounsellorExperience> counsellorExperience { get; set; }
+        
     }
 }

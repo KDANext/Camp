@@ -34,7 +34,7 @@ namespace DatabaseImplement.Logic
                         group = new Group();
                         context.Groups.Add(group);
                     }
-                    group.CounsellorId = model.CounsellorId == 0 ? group.CounsellorId : model.CounsellorId;
+                    //group.CounsellorId = model.CounsellorId == 0 ? group.CounsellorId : model.CounsellorId;
                     group.Name = model.Name;
                     group.Profile = model.Profile;
                     context.SaveChanges();
@@ -99,7 +99,7 @@ namespace DatabaseImplement.Logic
                 .Select(rec => new GroupViewModel
                 {
                     Id = rec.Id,
-                    CounsellorId = rec.CounsellorId,
+                    //CounsellorId = rec.CounsellorId,
                     Name = rec.Name,
                     Profile = rec.Profile,                     
                 })

@@ -35,13 +35,12 @@
             this.dataGridViewExperience = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonAddInterest = new System.Windows.Forms.Button();
-            this.buttonEditInterest = new System.Windows.Forms.Button();
             this.buttonDelInterest = new System.Windows.Forms.Button();
             this.buttonAddExp = new System.Windows.Forms.Button();
-            this.buttonEditExp = new System.Windows.Forms.Button();
             this.buttonDelExp = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonEditExp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInterests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewExperience)).BeginInit();
             this.SuspendLayout();
@@ -108,19 +107,9 @@
             this.buttonAddInterest.UseVisualStyleBackColor = true;
             this.buttonAddInterest.Click += new System.EventHandler(this.buttonAddInterest_Click);
             // 
-            // buttonEditInterest
-            // 
-            this.buttonEditInterest.Location = new System.Drawing.Point(279, 150);
-            this.buttonEditInterest.Name = "buttonEditInterest";
-            this.buttonEditInterest.Size = new System.Drawing.Size(100, 41);
-            this.buttonEditInterest.TabIndex = 22;
-            this.buttonEditInterest.Text = "Редактировать";
-            this.buttonEditInterest.UseVisualStyleBackColor = true;
-            this.buttonEditInterest.Click += new System.EventHandler(this.buttonUpdInterests_Click);
-            // 
             // buttonDelInterest
             // 
-            this.buttonDelInterest.Location = new System.Drawing.Point(279, 197);
+            this.buttonDelInterest.Location = new System.Drawing.Point(279, 150);
             this.buttonDelInterest.Name = "buttonDelInterest";
             this.buttonDelInterest.Size = new System.Drawing.Size(100, 41);
             this.buttonDelInterest.TabIndex = 23;
@@ -137,16 +126,6 @@
             this.buttonAddExp.Text = "Добавить ";
             this.buttonAddExp.UseVisualStyleBackColor = true;
             this.buttonAddExp.Click += new System.EventHandler(this.buttonAddExp_Click);
-            // 
-            // buttonEditExp
-            // 
-            this.buttonEditExp.Location = new System.Drawing.Point(689, 150);
-            this.buttonEditExp.Name = "buttonEditExp";
-            this.buttonEditExp.Size = new System.Drawing.Size(99, 41);
-            this.buttonEditExp.TabIndex = 25;
-            this.buttonEditExp.Text = "Редактировать";
-            this.buttonEditExp.UseVisualStyleBackColor = true;
-            this.buttonEditExp.Click += new System.EventHandler(this.buttonUpdExp_Click);
             // 
             // buttonDelExp
             // 
@@ -178,6 +157,15 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // buttonEditExp
+            // 
+            this.buttonEditExp.Location = new System.Drawing.Point(689, 150);
+            this.buttonEditExp.Name = "buttonEditExp";
+            this.buttonEditExp.Size = new System.Drawing.Size(99, 41);
+            this.buttonEditExp.TabIndex = 29;
+            this.buttonEditExp.Text = "Редактировать";
+            this.buttonEditExp.Click += new System.EventHandler(this.buttonUpdExperience_Click);
+            // 
             // FormCounsellor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,7 +177,6 @@
             this.Controls.Add(this.buttonEditExp);
             this.Controls.Add(this.buttonAddExp);
             this.Controls.Add(this.buttonDelInterest);
-            this.Controls.Add(this.buttonEditInterest);
             this.Controls.Add(this.buttonAddInterest);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dataGridViewExperience);
@@ -199,7 +186,7 @@
             this.Controls.Add(this.textBoxFIO);
             this.Name = "FormCounsellor";
             this.Text = "Вожатый";
-            this.Load += new System.EventHandler(this.FormComputer_Load);
+            this.Load += new System.EventHandler(this.FormCounsellor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInterests)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewExperience)).EndInit();
             this.ResumeLayout(false);
@@ -216,12 +203,11 @@
         private System.Windows.Forms.DataGridView dataGridViewExperience;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonAddInterest;
-        private System.Windows.Forms.Button buttonEditInterest;
         private System.Windows.Forms.Button buttonDelInterest;
         private System.Windows.Forms.Button buttonAddExp;
-        private System.Windows.Forms.Button buttonEditExp;
         private System.Windows.Forms.Button buttonDelExp;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonEditExp;
     }
 }

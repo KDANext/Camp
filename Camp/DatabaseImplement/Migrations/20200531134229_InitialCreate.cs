@@ -21,37 +21,6 @@ namespace DatabaseImplement.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Experience",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CounsellorId = table.Column<int>(nullable: false),
-                    AgeFrom = table.Column<int>(nullable: false),
-                    AgeTo = table.Column<int>(nullable: false),
-                    Years = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Experience", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Groups",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CounsellorId = table.Column<int>(nullable: true),
-                    Name = table.Column<string>(nullable: false),
-                    Profile = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Groups", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Interests",
                 columns: table => new
                 {
@@ -65,49 +34,44 @@ namespace DatabaseImplement.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CounsellorExperience",
+                name: "Experience",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CounsellorId = table.Column<int>(nullable: false),
-                    ExperienceId = table.Column<int>(nullable: false)
+                    AgeFrom = table.Column<int>(nullable: false),
+                    AgeTo = table.Column<int>(nullable: false),
+                    Years = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CounsellorExperience", x => x.id);
+                    table.PrimaryKey("PK_Experience", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CounsellorExperience_Counsellors_CounsellorId",
+                        name: "FK_Experience_Counsellors_CounsellorId",
                         column: x => x.CounsellorId,
                         principalTable: "Counsellors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CounsellorExperience_Experience_ExperienceId",
-                        column: x => x.ExperienceId,
-                        principalTable: "Experience",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Children",
+                name: "Groups",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GroupId = table.Column<int>(nullable: true),
-                    FIO = table.Column<string>(nullable: false),
-                    Age = table.Column<int>(nullable: false),
-                    ChildId = table.Column<int>(nullable: true)
+                    Name = table.Column<string>(nullable: false),
+                    Profile = table.Column<int>(nullable: false),
+                    GroupId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Children", x => x.Id);
+                    table.PrimaryKey("PK_Groups", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Children_Groups_ChildId",
-                        column: x => x.ChildId,
-                        principalTable: "Groups",
+                        name: "FK_Groups_Counsellors_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "Counsellors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -136,6 +100,27 @@ namespace DatabaseImplement.Migrations
                         principalTable: "Interests",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Children",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GroupId = table.Column<int>(nullable: true),
+                    FIO = table.Column<string>(nullable: false),
+                    Age = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Children", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Children_Groups_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "Groups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -175,19 +160,9 @@ namespace DatabaseImplement.Migrations
                 column: "InterestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Children_ChildId",
+                name: "IX_Children_GroupId",
                 table: "Children",
-                column: "ChildId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CounsellorExperience_CounsellorId",
-                table: "CounsellorExperience",
-                column: "CounsellorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CounsellorExperience_ExperienceId",
-                table: "CounsellorExperience",
-                column: "ExperienceId");
+                column: "GroupId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CounsellorInterests_CounsellorId",
@@ -198,6 +173,16 @@ namespace DatabaseImplement.Migrations
                 name: "IX_CounsellorInterests_InterestId",
                 table: "CounsellorInterests",
                 column: "InterestId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Experience_CounsellorId",
+                table: "Experience",
+                column: "CounsellorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Groups_GroupId",
+                table: "Groups",
+                column: "GroupId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -206,25 +191,22 @@ namespace DatabaseImplement.Migrations
                 name: "ChildInterests");
 
             migrationBuilder.DropTable(
-                name: "CounsellorExperience");
-
-            migrationBuilder.DropTable(
                 name: "CounsellorInterests");
-
-            migrationBuilder.DropTable(
-                name: "Children");
 
             migrationBuilder.DropTable(
                 name: "Experience");
 
             migrationBuilder.DropTable(
-                name: "Counsellors");
+                name: "Children");
 
             migrationBuilder.DropTable(
                 name: "Interests");
 
             migrationBuilder.DropTable(
                 name: "Groups");
+
+            migrationBuilder.DropTable(
+                name: "Counsellors");
         }
     }
 }

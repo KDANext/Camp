@@ -58,7 +58,7 @@ namespace Forms
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCounsellor>();
+            var form = Container.Resolve<FormCounsellor>();            
 
             if (form.ShowDialog() == DialogResult.OK)
             {

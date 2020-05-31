@@ -14,7 +14,7 @@ namespace Forms
         public new IUnityContainer Container { get; set; }
         public readonly ExperienceLogic logic;
         public int Id { get; set; }
-        public int councellorId { get; set; }
+        public int counsellorId { get; set; }
         public int AgeFrom { get { return Convert.ToInt32(textBoxAgeFrom.Text); } }
         public int AgeTo { get { return Convert.ToInt32(textBoxAgeTo.Text); } }
         public int Years { get { return Convert.ToInt32(textBoxYears.Text); } }           
@@ -41,14 +41,14 @@ namespace Forms
             }
             logic.CreateOrUpdate(new ExperienceBindingModel
             {
-                CounsellorId = this.councellorId,
+                CounsellorId = this.counsellorId,
                 AgeFrom = Convert.ToInt32(textBoxAgeFrom.Text),
                 AgeTo = Convert.ToInt32(textBoxAgeTo.Text),
                 Years = Convert.ToInt32(textBoxYears.Text)
             });
             Id = logic.Read(new ExperienceBindingModel
             {
-                CounsellorId = this.councellorId,
+                CounsellorId = this.counsellorId,
                 AgeFrom = Convert.ToInt32(textBoxAgeFrom.Text),
                 AgeTo = Convert.ToInt32(textBoxAgeTo.Text),
                 Years = Convert.ToInt32(textBoxYears.Text)
