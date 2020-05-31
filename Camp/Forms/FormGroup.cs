@@ -23,6 +23,7 @@ namespace Forms
         {
             InitializeComponent();
             this.logic = logic;
+            comboBoxProfile.DataSource = Enum.GetValues(typeof(Profile));
         }
         private void FormGroup_Load(object sender, EventArgs e)
         {
@@ -37,7 +38,8 @@ namespace Forms
                     if (view != null)
                     {
                         textBoxName.Text = view.Name;
-                        textBoxProfile.Text = view.Profile.ToString();                          
+                        comboBoxProfile.SelectedItem = view.Profile;
+                        comboBoxCounsellor.SelectedItem = view.CounsellorName;
                         LoadData();
                     }
                 }
@@ -72,9 +74,7 @@ MessageBoxIcon.Error);
             }
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
-        {
-            // сделать добавление через comboBox
-            //при добавлении ребёнка убираем его из combobox и показываем в списке
+        {            
             var form = Container.Resolve<FormGroupChild>();
             if (form.ShowDialog() == DialogResult.OK)
             {
@@ -88,21 +88,7 @@ MessageBoxIcon.Error);
                 }
                 LoadData();
             }
-        }
-        private void ButtonUpd_Click(object sender, EventArgs e)
-        {
-            if (dataGridView.SelectedRows.Count == 1)
-            {
-                var form = Container.Resolve<FormGroupChild>();
-                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                form.Id = id;                
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    groupChildren[form.Id] = form.ChildName;
-                    LoadData();
-                }
-            }
-        }
+        }       
         private void ButtonDel_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -133,7 +119,7 @@ MessageBoxIcon.Error);
                MessageBoxIcon.Error);
                 return;
             }
-            if (string.IsNullOrEmpty(textBoxProfile.Text))
+            if (string.IsNullOrEmpty(comboBoxProfile.Text))
             {
                 MessageBox.Show("Заполните профиль", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
@@ -145,9 +131,10 @@ MessageBoxIcon.Error);
                 {
                     Id = id,
                     Name = textBoxName.Text,
-                    Profile = (Profile)Enum.Parse(typeof(Profile), textBoxName.Text),               
+                    Profile = (Profile)Enum.Parse(typeof(Profile), textBoxName.Text),
+                    CounsellorId = comboBoxProfile.SelectedIndex,
                     Children = groupChildren
-                });
+                }) ;
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;

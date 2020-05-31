@@ -1,24 +1,32 @@
-﻿using BusinessLogic.Models;
+﻿using BusinessLogic.BindingModels;
 using DatabaseImplement.Logic;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
 
 namespace Forms
 {
-    public partial class FormChildren : Form
+    public partial class FormInterests : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly ChildLogic logic;
-        public FormChildren(ChildLogic logic)
+       private readonly InterestLogic logic;
+
+        public FormInterests(InterestLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
         }
 
-        private void FormChildren_Load(object sender, EventArgs e)
+        private void FormInterests_Load(object sender, EventArgs e)
         {
             LoadData();
         }
@@ -27,17 +35,15 @@ namespace Forms
         {
             try
             {
-                var list = logic.Read(null);                
+                var list = logic.Read(null);
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
                     for (int i = 0; i < 5; i++)
                     {
-                        dataGridView.Columns[0].Visible = false;
-                        dataGridView.Columns[1].Visible = false;
+                        dataGridView.Columns[0].Visible = false;                       
+                        dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                         
-                        dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;                        
-                        dataGridView.Columns[4].Visible = false;
                     }
                 }
             }
@@ -49,39 +55,25 @@ namespace Forms
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormChild>();
+            var form = Container.Resolve<FormAddInterest>();
 
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
             }
-        }
-
-        private void buttonUpd_Click(object sender, EventArgs e)
-        {
-            if (dataGridView.SelectedRows.Count == 1)
-            {
-                var form = Container.Resolve<FormChild>();
-                form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    LoadData();
-                }
-            }
-        }
+        }               
 
         private void buttonDel_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Удалить интерес", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
 
                     try
                     {
-                        logic.Delete(new ChildBindingModel { Id = id });
+                        logic.Delete(new InterestBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
@@ -91,6 +83,6 @@ namespace Forms
                     LoadData();
                 }
             }
-        }        
+        }
     }
 }

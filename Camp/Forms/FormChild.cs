@@ -27,7 +27,7 @@ namespace Forms
             this.logic = logic;
         }
 
-        private void FormComputer_Load(object sender, EventArgs e)
+        private void FormChild_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
@@ -66,9 +66,9 @@ namespace Forms
                 if (childInterests != null)
                 {
                     dataGridView.Rows.Clear();
-                    foreach (var ad in childInterests)
+                    foreach (var interest in childInterests)
                     {
-                        dataGridView.Rows.Add(new object[] { ad.Key, ad.Value });
+                        dataGridView.Rows.Add(new object[] { interest.Key, interest.Value });
                     }
                 }
             }
@@ -95,21 +95,7 @@ namespace Forms
                 LoadData();
             }
         }
-
-        private void buttonUpd_Click(object sender, EventArgs e)
-        {
-            if (dataGridView.SelectedRows.Count == 1)
-            {
-                var form = Container.Resolve<FormChildInterest>();
-                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                form.Id = id;                
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    childInterests[form.Id] = form.InterestName;
-                    LoadData();
-                }
-            }
-        }
+               
 
         private void buttonDel_Click(object sender, EventArgs e)
         {
@@ -130,11 +116,7 @@ namespace Forms
                 }
             }
         }
-
-        private void buttonRef_Click(object sender, EventArgs e)
-        {
-            LoadData();
-        }
+        
 
         private void buttonSave_Click(object sender, EventArgs e)
         {

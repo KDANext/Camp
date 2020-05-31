@@ -9,26 +9,7 @@ using System.Linq;
 namespace DatabaseImplement.Logic
 {
     public class ChildLogic
-    {
-       /* public void DeleteChildFromGroup(int childId)
-        {
-            //проходим по таблице детей, ищем ребёнка с таким id и обнуляем у него Id группы
-            using (var context = new CampDatabase())
-            {
-                using (var transaction = context.Database.BeginTransaction())
-                {                    
-                    foreach (var child in context.Children)
-                    {
-                        if (child.Id == childId)
-                        {
-                            child.GroupId = 0;
-                        }
-                    }
-                    transaction.Commit();
-                }
-            }
-        }*/
-
+    {   
         public void CreateOrUpdate(ChildBindingModel model)
         {
             using (var context = new CampDatabase())
@@ -141,8 +122,8 @@ namespace DatabaseImplement.Logic
                    ChildInterests = context.ChildInterests
                 .Include(recPC => recPC.interest)
                .Where(recPC => recPC.ChildId == rec.Id)
-               .ToDictionary(recPC => recPC.ChildId, recPC =>
-                recPC.interest.interest)
+               .ToDictionary(recPC => recPC.InterestId, recPC =>
+                recPC.interest?.interest)             
                })
                .ToList();
             }

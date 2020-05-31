@@ -24,7 +24,7 @@ namespace Forms
             List<InterestViewModel> list = logic.Read(null);
             if (list != null)
             {
-                comboBoxInterest.DisplayMember = "InterestName";
+                comboBoxInterest.DisplayMember = "Interest";
                 comboBoxInterest.ValueMember = "Id";
                 comboBoxInterest.DataSource = list;
                 comboBoxInterest.SelectedItem = null;

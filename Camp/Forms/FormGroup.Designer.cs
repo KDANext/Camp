@@ -30,20 +30,18 @@
         {
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxProfile = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBoxCounsellor = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonDel = new System.Windows.Forms.Button();
-            this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
-            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxProfile = new System.Windows.Forms.ComboBox();
+            this.comboBoxCounsellor = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +49,7 @@
             // 
             this.textBoxName.Location = new System.Drawing.Point(68, 12);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(157, 20);
+            this.textBoxName.Size = new System.Drawing.Size(157, 22);
             this.textBoxName.TabIndex = 1;
             // 
             // label1
@@ -59,23 +57,16 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(4, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Название";
-            // 
-            // textBoxProfile
-            // 
-            this.textBoxProfile.Location = new System.Drawing.Point(68, 50);
-            this.textBoxProfile.Name = "textBoxProfile";
-            this.textBoxProfile.Size = new System.Drawing.Size(157, 20);
-            this.textBoxProfile.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(260, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 13);
+            this.label2.Size = new System.Drawing.Size(79, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Список детей";
             // 
@@ -84,23 +75,16 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(4, 53);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.Size = new System.Drawing.Size(56, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Профиль";
-            // 
-            // textBoxCounsellor
-            // 
-            this.textBoxCounsellor.Location = new System.Drawing.Point(68, 87);
-            this.textBoxCounsellor.Name = "textBoxCounsellor";
-            this.textBoxCounsellor.Size = new System.Drawing.Size(157, 20);
-            this.textBoxCounsellor.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(4, 90);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 10;
             this.label5.Text = "Вожатый";
             // 
@@ -115,6 +99,16 @@
             this.dataGridView.RowTemplate.Height = 24;
             this.dataGridView.Size = new System.Drawing.Size(239, 254);
             this.dataGridView.TabIndex = 11;
+            // 
+            // ColumnId
+            // 
+            this.ColumnId.HeaderText = "Индефикатор";
+            this.ColumnId.Name = "ColumnId";
+            // 
+            // ColumnName
+            // 
+            this.ColumnName.HeaderText = "ФИО";
+            this.ColumnName.Name = "ColumnName";
             // 
             // buttonSave
             // 
@@ -138,23 +132,13 @@
             // 
             // buttonDel
             // 
-            this.buttonDel.Location = new System.Drawing.Point(607, 156);
+            this.buttonDel.Location = new System.Drawing.Point(607, 90);
             this.buttonDel.Name = "buttonDel";
             this.buttonDel.Size = new System.Drawing.Size(127, 41);
             this.buttonDel.TabIndex = 24;
             this.buttonDel.Text = "Удалить";
             this.buttonDel.UseVisualStyleBackColor = true;
             this.buttonDel.Click += new System.EventHandler(this.ButtonDel_Click);
-            // 
-            // buttonEdit
-            // 
-            this.buttonEdit.Location = new System.Drawing.Point(607, 86);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(127, 41);
-            this.buttonEdit.TabIndex = 23;
-            this.buttonEdit.Text = "Редактировать";
-            this.buttonEdit.UseVisualStyleBackColor = true;
-            this.buttonEdit.Click += new System.EventHandler(this.ButtonUpd_Click);
             // 
             // buttonAdd
             // 
@@ -166,41 +150,37 @@
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
-            // ColumnId
+            // comboBoxProfile
             // 
-            this.ColumnId.HeaderText = "Индефикатор";
-            this.ColumnId.Name = "ColumnId";
+            this.comboBoxProfile.FormattingEnabled = true;
+            this.comboBoxProfile.Location = new System.Drawing.Point(66, 50);
+            this.comboBoxProfile.Name = "comboBoxProfile";
+            this.comboBoxProfile.Size = new System.Drawing.Size(159, 21);
+            this.comboBoxProfile.TabIndex = 25;
             // 
-            // ColumnName
+            // comboBoxCounsellor
             // 
-            this.ColumnName.HeaderText = "ФИО";
-            this.ColumnName.Name = "ColumnName";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(68, 113);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 25;
+            this.comboBoxCounsellor.FormattingEnabled = true;
+            this.comboBoxCounsellor.Location = new System.Drawing.Point(68, 90);
+            this.comboBoxCounsellor.Name = "comboBoxCounsellor";
+            this.comboBoxCounsellor.Size = new System.Drawing.Size(159, 21);
+            this.comboBoxCounsellor.TabIndex = 26;
             // 
             // FormGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(746, 363);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxCounsellor);
+            this.Controls.Add(this.comboBoxProfile);
             this.Controls.Add(this.buttonDel);
-            this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBoxCounsellor);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBoxProfile);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxName);
             this.Name = "FormGroup";
@@ -216,19 +196,17 @@
 
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxProfile;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxCounsellor;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonDel;
-        private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxProfile;
+        private System.Windows.Forms.ComboBox comboBoxCounsellor;
     }
 }

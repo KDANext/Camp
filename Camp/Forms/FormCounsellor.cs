@@ -57,7 +57,7 @@ namespace Forms
             dataGridViewInterests.Columns.Clear();
             dataGridViewInterests.Columns.Add("Id", "Id");
             dataGridViewInterests.Columns.Add("Interest", "Интерес");
-            dataGridViewInterests.Columns[0].Visible = false;
+            dataGridViewInterests.Columns[0].Visible = false;            
             dataGridViewInterests.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             try
             {

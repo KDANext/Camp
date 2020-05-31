@@ -43,14 +43,13 @@ namespace DatabaseImplement.Logic
                         // нашли детей, входящих в эту группу
                         var Children = context.Children.Where(rec
                        => rec.GroupId == model.Id.Value).ToList();
-                        // у каждого ребёнка обнулили значение группы
+                        // у каждого ребёнка изменили значение группы
                         foreach (var child in Children)
-                        {
-                            //logic.DeleteChildFromGroup(child.Id);
-                            child.GroupId = 0;
+                        {                            
+                            child.GroupId = model.Id;
                         }
                     }
-                    // добавили новые
+                    /*// добавили новые
                     foreach (var child in model.Children)
                     {
                         context.Children.Add(new Child
@@ -59,7 +58,7 @@ namespace DatabaseImplement.Logic
                             Id = child.Key,
                         });
                         context.SaveChanges();
-                    }
+                    }*/
                     transaction.Commit();
                 }
             }

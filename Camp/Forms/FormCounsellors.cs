@@ -26,7 +26,7 @@ namespace Forms
             this.logic = logic;
         }
 
-        private void FormComputers_Load(object sender, EventArgs e)
+        private void FormConsellors_Load(object sender, EventArgs e)
         {
             LoadData();
         }
@@ -43,7 +43,10 @@ namespace Forms
                     {
                         dataGridView.Columns[0].Visible = false;
                         dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                        dataGridView.Columns[3].Visible = false;
+                        dataGridView.Columns[2].Visible = false;
+                        dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dataGridView.Columns[4].Visible = false;
+                        dataGridView.Columns[5].Visible = false;
                     }
                 }
             }

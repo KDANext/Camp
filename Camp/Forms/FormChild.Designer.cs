@@ -37,6 +37,7 @@
             this.buttonAddInterest = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonDel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,6 +99,7 @@
             this.buttonAddInterest.TabIndex = 6;
             this.buttonAddInterest.Text = "Добавить Интерес";
             this.buttonAddInterest.UseVisualStyleBackColor = true;
+            this.buttonAddInterest.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // buttonSave
             // 
@@ -107,6 +109,7 @@
             this.buttonSave.TabIndex = 7;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // buttonCancel
             // 
@@ -116,12 +119,24 @@
             this.buttonCancel.TabIndex = 8;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // buttonDel
+            // 
+            this.buttonDel.Location = new System.Drawing.Point(370, 154);
+            this.buttonDel.Name = "buttonDel";
+            this.buttonDel.Size = new System.Drawing.Size(139, 23);
+            this.buttonDel.TabIndex = 9;
+            this.buttonDel.Text = "Удалить Интерес";
+            this.buttonDel.UseVisualStyleBackColor = true;
+            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
             // 
             // FormChild
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(533, 450);
+            this.Controls.Add(this.buttonDel);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonAddInterest);
@@ -133,6 +148,7 @@
             this.Controls.Add(this.textBoxFIO);
             this.Name = "FormChild";
             this.Text = "FormChild";
+            this.Load += new System.EventHandler(this.FormChild_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -150,5 +166,6 @@
         private System.Windows.Forms.Button buttonAddInterest;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonDel;
     }
 }

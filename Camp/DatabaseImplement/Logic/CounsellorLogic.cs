@@ -135,7 +135,7 @@ namespace DatabaseImplement.Logic
         {
             using (var context = new CampDatabase())
             {
-                return context.Children
+                return context.Counsellors
                 .Where(rec => model == null || rec.Id == model.Id)
                 .ToList()
                .Select(rec => new CounsellorViewModel

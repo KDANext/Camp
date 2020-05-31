@@ -147,6 +147,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAddInterest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddInterest.Designer.cs">
+      <DependentUpon>FormAddInterest.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormChild.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,12 @@
     <Compile Include="FormGroupChild.Designer.cs">
       <DependentUpon>FormGroupChild.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormInterests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInterests.Designer.cs">
+      <DependentUpon>FormInterests.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +221,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAddInterest.resx">
+      <DependentUpon>FormAddInterest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormChild.resx">
       <DependentUpon>FormChild.cs</DependentUpon>
     </EmbeddedResource>
@@ -235,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGroupChild.resx">
       <DependentUpon>FormGroupChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInterests.resx">
+      <DependentUpon>FormInterests.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

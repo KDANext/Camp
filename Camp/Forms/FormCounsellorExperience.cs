@@ -10,21 +10,11 @@ namespace Forms
     public partial class FormCounsellorExperience : Form
     {
         [Dependency]
-        public new IUnityContainer Container { get; set; }
-        //как установить id?
+        public new IUnityContainer Container { get; set; }        
         public int Id
         {
-            /* get { return Convert.ToInt32(comboBoxInterest.SelectedValue); }
-             set { comboBoxInterest.SelectedValue = value; }*/
-             // чтобы пока хоть как-то работало
-            get
-            {
-                return -1;
-            }
-            set
-            {
-
-            }
+            get { return Convert.ToInt32(textBoxAgeFrom.Text); }
+            set { textBoxAgeFrom.Text = value.ToString(); }
         }
         public int AgeFrom { get { return Convert.ToInt32(textBoxAgeFrom.Text); } }
         public int AgeTo { get { return Convert.ToInt32(textBoxAgeTo.Text); } }
