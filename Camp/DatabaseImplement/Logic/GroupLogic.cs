@@ -57,7 +57,7 @@ namespace DatabaseImplement.Logic
                             child.GroupId = group.Id;
                         }
                     }
-                    if (model.CounselorId != 0 && model.CounselorId == null)
+                    if (model.CounselorId != 0 && model.CounselorId != null)
                     {
                         var Counselor = context.Counsellors.Where(x => x.Id == model.CounselorId).ToList()[0];
                         Counselor.GroupId = group.Id;

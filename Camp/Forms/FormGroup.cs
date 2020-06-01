@@ -32,14 +32,11 @@ namespace Forms
         }
         private void FormGroup_Load(object sender, EventArgs e)
         {
-            var counsellorsView = counsellorLogic.Read(null);
-            if (counsellorsView != null)
-            {
-                comboBoxCounsellor.DisplayMember = "FIO";
-                comboBoxCounsellor.ValueMember = "Id";
-                comboBoxCounsellor.DataSource = counsellorsView;
-                comboBoxCounsellor.SelectedItem = null;
-            }
+            var counsellorsView =counsellorLogic.Read(null);
+            comboBoxCounsellor.DisplayMember = "FIO";
+            comboBoxCounsellor.ValueMember = "Id";
+            comboBoxCounsellor.DataSource = counsellorsView;
+            comboBoxCounsellor.SelectedItem = null;
             if (id.HasValue)
             {
                 try
@@ -52,8 +49,10 @@ namespace Forms
                     {
                         textBoxName.Text = view.Name;
                         comboBoxProfile.SelectedItem = view.Profile;
-                        comboBoxCounsellor.SelectedText = view.CounsellorName;
-                        comboBoxCounsellor.SelectedIndex = view.CounsellorId.Value;
+                        if (view.CounsellorId.HasValue)
+                        {
+                            comboBoxCounsellor.SelectedItem = counsellorsView.First(x => x.Id == view.CounsellorId.Value);
+                        }
                         groupChildren = childLogic.Read(new ChildBindingModel { GroupId = id }).ToDictionary(x => x.Id.Value,x=> x.FIO);
                         LoadData();
                     }
@@ -148,9 +147,9 @@ MessageBoxIcon.Error);
                     Id = id,
                     Name = textBoxName.Text,
                     Profile = (Profile)Enum.Parse(typeof(Profile), comboBoxProfile.SelectedItem.ToString()),
-                    CounselorId = comboBoxProfile.SelectedIndex,
+                    CounselorId = ((CounsellorViewModel) comboBoxCounsellor.SelectedItem)?.Id.Value,
                     Children = groupChildren
-                }) ;
+                });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;

@@ -73,14 +73,41 @@ namespace DatabaseImplement.Logic
                 {
                     throw new Exception("Недостаточно вожатых для всех групп");
                 }
-                List<Tuple<int, int, int>> tabel = new List<Tuple<int, int, int>>();
+                //<идВожатого,идГрупа,насколькоПодходитВожатый>
+                List<Tuple<int, int, int>> table = new List<Tuple<int, int, int>>();
                 foreach(var c in Counselors)
                 {
                     foreach(var g in Groups)
                     {
-                        CreateScore(c.Id, g.Id);
+                        table.Add(CreateScore(c.Id, g.Id));
                     }
                 }
+                DistributeСounselors(table);
+
+            }
+        }
+
+        private void DistributeСounselors(List<Tuple<int, int, int>> table)
+        {
+            int GroupId, CounselorId;
+            {
+                var temp = table.First(x => x.Item3 == table.Max(y => y.Item3));
+                GroupId = temp.Item2;
+                CounselorId = temp.Item1;
+            }
+            using (var context = new CampDatabase())
+            {
+                var counselor = context.Counsellors.First(x => x.Id == CounselorId);
+                counselor.GroupId = GroupId;
+                context.SaveChanges();
+            }
+            table.RemoveAll(x => x.Item1 == CounselorId || x.Item2 == GroupId);
+            if (table.Count == 0)
+            {
+                return;
+            } else
+            {
+                DistributeСounselors(table);
             }
         }
 
@@ -91,23 +118,47 @@ namespace DatabaseImplement.Logic
             {
                 var interesCounselor = context.CounsellorInterests.Where(x => x.CounsellorId == counselorId).ToList();
                 var childerenInGroup = context.Children.Where(x => x.GroupId == groupId).ToList();
+                var expCounselor = context.Experience.Where(x => x.CounsellorId == counselorId).ToList();
                 foreach(var child in childerenInGroup)
                 {
                     var interestChild = context.ChildInterests.Where(x => x.ChildId == child.Id).ToList();
-                    CreateScoreChildCounselor(interesCounselor, interestChild);
+                    score += CreateScoreChildCounselorInterest(interesCounselor, interestChild);
+                    score += CreateScoreChildCounselorAgeAndExp(expCounselor, child.Age);
                 }
-                return null;
+                return Tuple.Create(counselorId,groupId,score);
             }
         }
 
-        private int CreateScoreChildCounselor(List<CounsellorInterests> interesCounselor, List<ChildInterests> childInterests)
+        private int CreateScoreChildCounselorAgeAndExp(List<Experience> expCounselor, int age)
+        {
+            var listValExp = expCounselor.Where(y => y.AgeFrom <= age && y.AgeTo >= age);
+            if(listValExp.Count() == 0)
+            {
+                return 0;
+            } else
+            {
+                int temp = listValExp.Max(x => x.Years);
+                return temp;
+            }
+        }
+
+        private int CreateScoreChildCounselorInterest(List<CounsellorInterests> interesCounselor, List<ChildInterests> childInterests)
         {
             int score = 0;
-            int counselorInterestCount = interesCounselor.Count();
-            interesCounselor.RemoveAll(x => childInterests.Select(y => y.InterestId).Contains(x.InterestId));
-            score = counselorInterestCount - interesCounselor.Count();
+            int Count;
+            int CountUnlike;
+            if (interesCounselor.Count() >= childInterests.Count())
+            {
+                Count = interesCounselor.Count();
+                CountUnlike = interesCounselor.RemoveAll(x => childInterests.Select(y => y.InterestId).Contains(x.InterestId));
+            } else
+            {
+                Count = childInterests.Count();
+                CountUnlike = childInterests.RemoveAll(x => interesCounselor.Select(y => y.InterestId).Contains(x.InterestId));
+            }
+            score = Count - CountUnlike;
             return score;
-        }
+        } 
 
         // ищем разницу между средним возрастом детей и возрастом, с которым у вожатого есть опыт работы
         public int FindDiff(int AgeFrom, int AgeTo, int age)
