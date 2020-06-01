@@ -12,12 +12,7 @@ namespace DatabaseImplement.Models
         [Required]     
         public string Name { get; set; }
         public Profile Profile { get; set; }
-
-        [ForeignKey("GroupId")]
         public virtual List<Child> children { get; set; }
-
-        [ForeignKey("GroupId")]
-
         public virtual Counsellor counsellor { get; set; }
     }
 }

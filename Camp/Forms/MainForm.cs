@@ -50,7 +50,8 @@ namespace Forms
 
         private void buttonMatch_Click(object sender, EventArgs e)
         {
-            logicM.Match();
+            //logicM.Match();
+            logicM.Calculate();
         }
 
         private void вожатыеToolStripMenuItem_Click(object sender, EventArgs e)

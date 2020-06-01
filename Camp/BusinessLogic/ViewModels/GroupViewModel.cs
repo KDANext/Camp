@@ -1,4 +1,5 @@
 ﻿using BusinessLogic.Enums;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace BusinessLogic.ViewModels
@@ -15,6 +16,6 @@ namespace BusinessLogic.ViewModels
         public string CounsellorName { get; set; }        
 
         [DisplayName("Профиль")]
-        public Profile Profile { get; set; } 
+        public Profile Profile { get; set; }
     }
 }

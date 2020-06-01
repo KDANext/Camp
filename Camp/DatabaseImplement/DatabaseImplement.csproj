@@ -311,6 +311,14 @@
     <Compile Include="Migrations\20200531134229_InitialCreate.designer.cs">
       <DependentUpon>20200531134229_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200601110005_newFix.cs" />
+    <Compile Include="Migrations\20200601110005_newFix.designer.cs">
+      <DependentUpon>20200601110005_newFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200601110216_newFix1.cs" />
+    <Compile Include="Migrations\20200601110216_newFix1.designer.cs">
+      <DependentUpon>20200601110216_newFix1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CampDatabaseModelSnapshot.cs" />
     <Compile Include="Models\Child.cs" />
     <Compile Include="Models\ChildInterests.cs" />

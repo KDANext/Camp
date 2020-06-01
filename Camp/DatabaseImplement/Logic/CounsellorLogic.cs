@@ -134,16 +134,17 @@ namespace DatabaseImplement.Logic
                    Id = rec.Id,
                    FIO = rec.FIO,
                    GroupId = rec.GroupId,
-                   CounsellorInterests = context.CounsellorInterests
-                .Include(recPC => recPC.counsellorInterests)
-               .Where(recPC => recPC.CounsellorId == rec.Id)
-               .ToDictionary(recPC => recPC.CounsellorId, recPC =>
-                recPC.counsellorInterests.interest),
 
-               CounsellorExperience = context.Experience                
-               .Where(recPC => recPC.CounsellorId == rec.Id)
-               .ToDictionary(recPC => recPC.CounsellorId, recPC =>
-                (recPC.AgeFrom, recPC.AgeTo, recPC.Years))
+                   CounsellorInterests = context.CounsellorInterests
+                    .Include(recPC => recPC.counsellorInterests)
+                   .Where(recPC => recPC.CounsellorId == rec.Id)
+                   .ToDictionary(recPC => recPC.id, recPC =>
+                    recPC.counsellorInterests.interest),
+
+                   CounsellorExperience = context.Experience                
+                   .Where(recPC => recPC.CounsellorId == rec.Id)
+                   .ToDictionary(recPC => recPC.Id, recPC =>
+                    (recPC.AgeFrom, recPC.AgeTo, recPC.Years))
                })
                .ToList();
             }

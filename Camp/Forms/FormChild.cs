@@ -33,7 +33,7 @@ namespace Forms
             {
                 try
                 {
-                    ChildViewModel view = logic.Read(new ChildBindingModel { Id = id.Value })?[0];
+                    ChildViewModel view = logic.Read(null).Where(x => x.Id == id).First();
 
                     if (view != null)
                     {

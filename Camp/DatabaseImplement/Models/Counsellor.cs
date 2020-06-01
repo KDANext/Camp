@@ -10,11 +10,7 @@ namespace DatabaseImplement.Models
         [Required]
         public string FIO { get; set; }
         public int? GroupId { get; set; }
-
-        [ForeignKey("CounsellorId")]
         public virtual List<CounsellorInterests> interests { get; set; }
-
-        [ForeignKey("CounsellorId")]
         public virtual List<Experience> experience { get; set; }
 
 

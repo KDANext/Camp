@@ -4,6 +4,7 @@ using BusinessLogic.ViewModels;
 using DatabaseImplement.Logic;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Unity;
 
@@ -16,15 +17,17 @@ namespace Forms
 
         private readonly GroupLogic logic;
         private readonly CounsellorLogic counsellorLogic;
+        private readonly ChildLogic childLogic;
         public int Id { set { id = value; } }        
         private int? id;
         private Dictionary<int, string> groupChildren;
        
-        public FormGroup(GroupLogic logic,CounsellorLogic counsellorLogic)
+        public FormGroup(GroupLogic logic,CounsellorLogic counsellorLogic,ChildLogic childLogic)
         {
             InitializeComponent();
             this.logic = logic;
             this.counsellorLogic = counsellorLogic;
+            this.childLogic = childLogic;
             comboBoxProfile.DataSource = Enum.GetValues(typeof(Profile));
         }
         private void FormGroup_Load(object sender, EventArgs e)
@@ -49,9 +52,12 @@ namespace Forms
                     {
                         textBoxName.Text = view.Name;
                         comboBoxProfile.SelectedItem = view.Profile;
-                        comboBoxCounsellor.SelectedItem = view.CounsellorName;
+                        comboBoxCounsellor.SelectedText = view.CounsellorName;
+                        comboBoxCounsellor.SelectedIndex = view.CounsellorId.Value;
+                        groupChildren = childLogic.Read(new ChildBindingModel { GroupId = id }).ToDictionary(x => x.Id.Value,x=> x.FIO);
                         LoadData();
                     }
+
                 }
                 catch (Exception ex)
                 {
@@ -142,7 +148,7 @@ MessageBoxIcon.Error);
                     Id = id,
                     Name = textBoxName.Text,
                     Profile = (Profile)Enum.Parse(typeof(Profile), comboBoxProfile.SelectedItem.ToString()),
-                    CounsellorId = comboBoxProfile.SelectedIndex,
+                    CounselorId = comboBoxProfile.SelectedIndex,
                     Children = groupChildren
                 }) ;
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",

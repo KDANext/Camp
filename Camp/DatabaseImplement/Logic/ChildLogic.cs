@@ -112,7 +112,7 @@ namespace DatabaseImplement.Logic
             using (var context = new CampDatabase())
             {
                 return context.Children
-                .Where(rec => model == null || rec.Id == model.Id)
+                .Where(rec => model == null || rec.Id == model.Id || rec.GroupId == model.GroupId)
                 .ToList()
                .Select(rec => new ChildViewModel
                {

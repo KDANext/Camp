@@ -49,20 +49,27 @@ namespace DatabaseImplement.Logic
                             child.GroupId = model.Id;
                         }
                     }
-                    /*// добавили новые
-                    foreach (var child in model.Children)
+                    // добавили новые
+                    foreach (var child in context.Children)
                     {
-                        context.Children.Add(new Child
+                        if (model.Children.ContainsKey(child.Id))
                         {
-                            GroupId = group.Id,
-                            Id = child.Key,
-                        });
-                        context.SaveChanges();
-                    }*/
+                            child.GroupId = group.Id;
+                        }
+                    }
+                    if (model.CounselorId != 0 && model.CounselorId == null)
+                    {
+                        var Counselor = context.Counsellors.Where(x => x.Id == model.CounselorId).ToList()[0];
+                        Counselor.GroupId = group.Id;
+                    }
+                    context.SaveChanges();
+                    
                     transaction.Commit();
                 }
             }
         }
+
+
         public void Delete(GroupBindingModel model)
         {
             using (var context = new CampDatabase())
@@ -90,18 +97,17 @@ namespace DatabaseImplement.Logic
         public List<GroupViewModel> Read(GroupBindingModel model)
         {
             using (var context = new CampDatabase())
-            {
+            {              
                 return context.Groups
-                .Include(rec => rec.children)
                 .Where(rec => model == null ||
-                        (rec.Id == model.Id && model.Id.HasValue) &&                     
-                        (rec.Profile <= model.Profile))
+                        (rec.Id == model.Id && model.Id.HasValue))
                 .Select(rec => new GroupViewModel
                 {
                     Id = rec.Id,
-                    //CounsellorId = rec.CounsellorId,
+                    CounsellorId = context.Counsellors.Where(x => x.GroupId == rec.Id).First().Id,
+                    CounsellorName = context.Counsellors.Where(x => x.GroupId == rec.Id).First().FIO,
                     Name = rec.Name,
-                    Profile = rec.Profile,                     
+                    Profile = rec.Profile,
                 })
                 .ToList();
             }
